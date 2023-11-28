@@ -1,5 +1,6 @@
 const express = require("express");
 const dialer = require("dialer").Dialer;
+const { Server } = require("socket.io");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
@@ -23,9 +24,15 @@ app.use((req, res, next) => {
   next();
 });
 
-app.listen(port, (req, res) => {
+// app.listen(port, () => {
+//   console.log(`App running on port ${port}`);
+// });
+
+const serverInstance = app.listen(port, () => {
   console.log(`App running on port ${port}`);
 });
+
+const io = new Server(serverInstance);
 
 app.get("/test", (req, res) => {
   res.json({ message: "test" });
@@ -52,20 +59,25 @@ app.post("/call/", async (req, res) => {
 
   const bridge = await dialer.call(number1, number2);
 
+  let oldStatus = null;
+
   let interval = setInterval(async () => {
-    let status = await bridge.getStatus();
-    console.log(status);
+    let currentStatus = await bridge.getStatus();
+    if (currentStatus !== oldStatus) {
+      oldStatus = currentStatus;
+      io.emit("status", currentStatus);
+    }
     if (
-      status === "ANSWERED" ||
-      status === "FAILED" ||
-      status === "BUSY" ||
-      status === "NO ANSWER"
+      currentStatus === "ANSWERED" ||
+      currentStatus === "FAILED" ||
+      currentStatus === "BUSY" ||
+      currentStatus === "NO ANSWER"
     ) {
       console.log("stop");
       clearInterval(interval);
     }
-  }, 2000);
-  res.json({ success: true });
+  }, 1000);
+  res.json({ id: "123", status: bridge.STATUSES.NEW });
 });
 
 app.get("/status", async function (req, res) {

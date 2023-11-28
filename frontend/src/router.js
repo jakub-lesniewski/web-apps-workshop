@@ -13,9 +13,19 @@ const routes = [
   },
   {
     path: "/ringing",
-    name: "Ringing",
-    component: import("./views/Ringing.vue"),
+    name: "ringing",
+    component: () => import("./views/Ringing.vue"),
     props: true,
+  },
+  {
+    path: "/connected",
+    name: "connected",
+    component: () => import("./views/Connected.vue"),
+  },
+  {
+    path: "/answered",
+    name: "answered",
+    component: () => import("./views/Answered.vue"),
   },
 ];
 

@@ -3,6 +3,7 @@
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dialer": "bitbucket:pdombrowski/dialer",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2"
   }
 }

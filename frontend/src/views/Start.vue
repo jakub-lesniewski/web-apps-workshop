@@ -1,11 +1,11 @@
 <template>
-  <form class="flex flex-col gap-5 border p-5 text-lg">
+  <form class="flex flex-col gap-5 border p-8 text-lg">
     <div>We will call you within 26 seconds!</div>
     <input
       v-model="number"
       id="form-number"
       placeholder="phone number"
-      class="border p-2 focus:outline-none focus:ring-1 focus:ring-black"
+      class="border p-2 pl-3 focus:outline-none focus:ring-1 focus:ring-black"
     />
     <button
       @click="call()"
