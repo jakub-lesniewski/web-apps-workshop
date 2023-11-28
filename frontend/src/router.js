@@ -3,8 +3,8 @@ import { createRouter, createWebHistory } from "vue-router";
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: () => import("./views/Home.vue"),
+    name: "Start",
+    component: () => import("./views/Start.vue"),
   },
   {
     path: "/about",
@@ -12,13 +12,8 @@ const routes = [
     component: () => import("./views/About.vue"),
   },
   {
-    path: "/start",
-    name: "Start",
-    component: () => import("./views/Start.vue"),
-  },
-  {
     path: "/ringing",
-    name: "ringing",
+    name: "Ringing",
     component: import("./views/Ringing.vue"),
     props: true,
   },

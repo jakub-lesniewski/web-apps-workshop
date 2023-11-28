@@ -36,7 +36,7 @@ export default {
       });
 
       let response = await responseStream.json();
-      this.$router.push({ name: "ringing", params: { callsId: response.id } });
+      this.$router.push({ name: "Ringing", params: { callsId: response.id } });
     },
   },
 };
