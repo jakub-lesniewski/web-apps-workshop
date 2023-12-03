@@ -1,12 +1,23 @@
 <template>
   <div>
-    <nav class="flex justify-center gap-10 border p-5">
-      <router-link to="/">Start</router-link>
-      <router-link to="/about">About</router-link>
-    </nav>
+    <Navbar />
+    <CallHistory />
 
     <main class="flex h-screen items-center justify-center">
       <router-view />
     </main>
   </div>
 </template>
+
+<script>
+import Navbar from "./components/Navbar.vue";
+import CallHistory from "./components/CallHistory.vue";
+
+export default {
+  name: "App",
+  components: {
+    Navbar,
+    CallHistory,
+  },
+};
+</script>

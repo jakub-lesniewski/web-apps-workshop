@@ -4,6 +4,7 @@
     <input
       v-model="number"
       id="form-number"
+      ref="phoneNumberInput"
       placeholder="phone number"
       class="border p-2 pl-3 focus:outline-none focus:ring-1 focus:ring-black"
     />
@@ -35,32 +36,31 @@ export default {
     async call() {
       event.preventDefault();
 
-      switch (true) {
-        case !isPhoneNumber(this.number):
-          this.errorMessage = "Incorrect number format!";
-          break;
-        case isRootNumber(this.number):
-          this.errorMessage = "Cannot call the root number!";
-          break;
-        default:
-          this.errorMessage = "";
+      if (!isPhoneNumber(this.number)) {
+        this.errorMessage = "Incorrect number format!";
 
-          let responseStream = await fetch("http://localhost:3000/call/", {
-            method: "POST",
-            headers: {
-              "Content-type": "application/json; charset=UTF-8",
-            },
-            body: JSON.stringify({ number: this.number }),
-          });
-
-          let response = await responseStream.json();
-          this.$router.push({
-            name: "ringing",
-            params: { callsId: response.id },
-          });
-          break;
+        return;
       }
+      if (isRootNumber(this.number)) {
+        this.errorMessage = "Cannot call root number";
+
+        return;
+      }
+
+      let responseStream = await fetch("http://localhost:3000/call/", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+        body: JSON.stringify({ number: this.number }),
+      });
+
+      let response = await responseStream.json();
+      this.$router.push({ name: "ringing", params: { callsId: response.id } });
     },
+  },
+  mounted() {
+    this.$refs.phoneNumberInput.focus();
   },
 };
 </script>
