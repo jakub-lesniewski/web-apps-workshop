@@ -10,7 +10,3 @@
     </button>
   </div>
 </template>
-
-<script>
-// .this
-</script>

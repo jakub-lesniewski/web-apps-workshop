@@ -27,6 +27,11 @@ const routes = [
     name: "answered",
     component: () => import("./views/Answered.vue"),
   },
+  {
+    path: "/failed",
+    name: "failed",
+    component: () => import("./views/Failed.vue"),
+  },
 ];
 
 const router = createRouter({

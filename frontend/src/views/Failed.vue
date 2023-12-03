@@ -1,5 +1,12 @@
 <template>
-  <div>
+  <div class="flex flex-col gap-5">
     <h1 class="text-3xl">Call failed :(</h1>
+
+    <button
+      @click="this.$router.push(`/`)"
+      class="border p-2 text-xl tracking-wider transition-all hover:bg-black hover:text-white"
+    >
+      Try again
+    </button>
   </div>
 </template>
