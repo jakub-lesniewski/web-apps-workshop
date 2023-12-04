@@ -4,6 +4,15 @@
 4. backend uruchamiamy komendą *node index.js* z poziomu katalogu backend
 5. frontend uruchamiamy komendą *npm run dev* z poziomu katalogu frontend
 
+Nasz katalog główny powinień mieć format
+
+web-apps-workshop/
+|-- backend/
+|-- frontend/
+|-- .env/
+|-- .gitignore/
+|-- README.md/
+
 Plik .env tworzymy wedle formatu
 
 
