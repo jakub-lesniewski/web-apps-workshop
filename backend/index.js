@@ -3,13 +3,18 @@ const dialer = require("dialer").Dialer;
 const { Server } = require("socket.io");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
+const path = require("path");
+
+const envPath = path.join(__dirname, "../.env");
+dotenv.config({ path: envPath });
 
 const app = express();
 const port = 3000;
 const config = {
     url: "https://uni-call.fcc-online.pl",
-    login: "focus04",
-    password: "#dj6umytbhns",
+    login: process.env.LOGIN,
+    password: "#" + process.env.PASSWORD,
 };
 
 dialer.configure(config);
@@ -25,6 +30,7 @@ app.use((req, res, next) => {
 });
 
 const serverInstance = app.listen(port, () => {
+    console.log(process.env.LOGIN, "#" + process.env.PASSWORD);
     console.log(`App running on port ${port}`);
 });
 
