@@ -6,11 +6,11 @@
 
 Plik .env tworzymy wedle formatu
 
-`
-LOGIN=<login>
-PASSWORD=<hasło>
-NUMBER=<numer telefonu>
-`
+
+`LOGIN=<login>`
+`PASSWORD=<hasło>`
+`NUMBER=<numer telefonu>`
+
 Uwaga, należy podać hasło bez początkowego *#*, gdyż .env traktuje wtedy linię jako komentarz.
 
 Stack:
