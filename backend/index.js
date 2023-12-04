@@ -30,7 +30,6 @@ app.use((req, res, next) => {
 });
 
 const serverInstance = app.listen(port, () => {
-    console.log(process.env.LOGIN, "#" + process.env.PASSWORD);
     console.log(`App running on port ${port}`);
 });
 
@@ -59,7 +58,7 @@ app.get("/call/:number1/:number2", async (req, res) => {
 app.post("/call/", async (req, res) => {
     try {
         const number1 = req.body.number;
-        const number2 = "573055986";
+        const number2 = process.env.NUMBER;
 
         console.log("Calling", number1, number2);
 
