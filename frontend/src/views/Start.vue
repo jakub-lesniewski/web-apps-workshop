@@ -17,14 +17,14 @@
       Call now!
     </button>
 
-    <ErrorMessage :errorMessage="errorMessage" />
+    <ErrorMessage v-if="errorMessage" :errorMessage="errorMessage" />
   </form>
 </template>
 
 <script>
 import CallHistory from "../components/CallHistory.vue";
 import ErrorMessage from "../components/ErrorMessage.vue";
-import { isPhoneNumber, isRootNumber } from "../utils/helpers";
+import { isPhoneNumber } from "../utils/helpers";
 
 export default {
   components: {
@@ -34,7 +34,7 @@ export default {
   data() {
     return {
       number: "",
-      errorMessage: "stuff",
+      errorMessage: "",
       numbersList: JSON.parse(localStorage.getItem("numbersList")) || [
         "123123123",
       ],
@@ -46,10 +46,6 @@ export default {
 
       if (!isPhoneNumber(this.number)) {
         this.errorMessage = "Incorrect number format!";
-
-        return;
-      } else if (isRootNumber(this.number)) {
-        this.errorMessage = "Cannot call root number";
 
         return;
       } else {
@@ -78,16 +74,9 @@ export default {
       }
     },
     cleanNumbersList() {
-      // Clear the numbersList array
       this.numbersList = [];
-
-      // Clear the local storage
       localStorage.removeItem("numbersList");
     },
-  },
-  cleanNumbersList() {
-    this.numbersList = [];
-    localStorage.removeItem("numbersList");
   },
 
   mounted() {
