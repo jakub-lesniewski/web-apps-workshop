@@ -6,12 +6,12 @@
 
 Nasz katalog główny powinień mieć format
 
-web-apps-workshop/
-|-- backend/
-|-- frontend/
-|-- .env/
-|-- .gitignore/
-|-- README.md/
+web-apps-workshop/  
+|-- backend/  
+|-- frontend/  
+|-- .env/  
+|-- .gitignore/  
+|-- README.md/  
 
 Plik .env tworzymy wedle formatu
 
